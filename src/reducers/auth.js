@@ -6,7 +6,10 @@ import {
     LOGOUT_SUCCESS,
     LOGOUT_FAILURE,
     VERIFY_REQUEST,
-    VERIFY_SUCCESS
+    VERIFY_SUCCESS,
+    CREATE_USER_ERROR,
+    CREATE_USER_SUCCESS,
+    CREATE_USER_REQUEST
   } from "../actions/";
 
   export default (
@@ -14,8 +17,10 @@ import {
       isLoggingIn: false,
       isLoggingOut: false,
       isVerifying: false,
+      isCreatingUser: false,
       loginError: false,
       logoutError: false,
+      createUserError: false,
       isAuthenticated: false,
       user: {}
     },
@@ -72,6 +77,26 @@ import {
           ...state,
           isVerifying: false
         };
+      case CREATE_USER_REQUEST:
+        return {
+            ...state,
+            isCreatingUser: true,
+            createUserError: false
+        }
+      case CREATE_USER_SUCCESS:
+        return {
+            ...state,
+            isCreatingUser: false,
+            isAuthenticated: true,
+            user: action.user
+        }
+      case CREATE_USER_ERROR:
+        return {
+            ...state,
+            isCreatingUser: false,
+            isAuthenticated: false,
+            createUserError: true
+        }
       default:
         return state;
     }

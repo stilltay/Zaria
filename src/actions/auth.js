@@ -11,6 +11,12 @@ export const LOGOUT_FAILURE = "LOGOUT_FAILURE";
 export const VERIFY_REQUEST = "VERIFY_REQUEST";
 export const VERIFY_SUCCESS = "VERIFY_SUCCESS";
 
+export const CREATE_USER_REQUEST = "CREATE_USER_REQUEST";
+export const CREATE_USER_ERROR = "CREATE_USER_ERROR";
+export const CREATE_USER_SUCCESS = "CREATE_USER_SUCCESS";
+
+
+
 const requestLogin = () => {
     return {
       type: LOGIN_REQUEST
@@ -60,6 +66,25 @@ const verifySuccess = () => {
     };
 };
 
+const requestCreateUser = () => {
+    return {
+        type: CREATE_USER_REQUEST
+    };
+};
+
+const createUserSuccess = (resp) => {
+    return {
+        type: CREATE_USER_SUCCESS,
+        user: resp
+    };
+};
+
+const createUserError = () => {
+    return {
+        type: CREATE_USER_ERROR
+    };
+};
+
 export const loginUser = (email, password) => dispatch => {
     dispatch(requestLogin());
     myFirebase
@@ -96,4 +121,15 @@ export const loginUser = (email, password) => dispatch => {
       }
       dispatch(verifySuccess());
     });
+  };
+
+  export const createUser = (email, pass) => dispatch => {
+    dispatch(requestCreateUser());
+    myFirebase
+    .auth()
+    .createUserWithEmailAndPassword(email, pass)
+    .then((resp) => {
+        return dispatch(createUserSuccess(resp));
+    })
+    .catch((error) => dispatch(createUserError()));
   };

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-import { loginUser } from "../actions";
+import { createUser } from "../actions";
 import { withStyles } from "@material-ui/styles";
 
 import Avatar from "@material-ui/core/Avatar";
@@ -40,7 +40,7 @@ const styles = () => ({
   }
 });
 
-class Login extends Component {
+class CreateUser extends Component {
   state = { email: "", password: "" };
 
   handleEmailChange = ({ target }) => {
@@ -55,11 +55,11 @@ class Login extends Component {
     const { dispatch } = this.props;
     const { email, password } = this.state;
 
-    dispatch(loginUser(email, password));
+    dispatch(createUser(email, password));
   };
 
   render() {
-    const { classes, loginError, isAuthenticated } = this.props;
+    const { classes, createUserError, isAuthenticated } = this.props;
     if (isAuthenticated) {
       return <Redirect to="/" />;
     } else {
@@ -70,7 +70,7 @@ class Login extends Component {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Create Account
             </Typography>
             <TextField
               variant="outlined"
@@ -91,7 +91,7 @@ class Login extends Component {
               id="password"
               onChange={this.handlePasswordChange}
             />
-            {loginError && (
+            {createUserError && (
               <Typography component="p" className={classes.errorText}>
                 Incorrect email or password.
               </Typography>
@@ -104,10 +104,10 @@ class Login extends Component {
               className={classes.submit}
               onClick={this.handleSubmit}
             >
-              Sign In
+              Create Account
             </Button>
-            <Link to="/createuser">
-              Create An Account
+            <Link to="/login">
+              Return to Login Page
             </Link>{' '}
           </Paper>
         </Container>
@@ -118,10 +118,10 @@ class Login extends Component {
 
 function mapStateToProps(state) {
   return {
-    isLoggingIn: state.auth.isLoggingIn,
-    loginError: state.auth.loginError,
+    isCreatingUser: state.auth.isCreatingUser,
+    createUserError: state.auth.createUserError,
     isAuthenticated: state.auth.isAuthenticated
   };
 }
 
-export default withStyles(styles)(connect(mapStateToProps)(Login));
+export default withStyles(styles)(connect(mapStateToProps)(CreateUser));
