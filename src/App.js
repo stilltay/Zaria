@@ -1,12 +1,14 @@
 import React from "react";
+import './App.sass';
 
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
 import ProtectedRoute from "./components/ProtectedRoute";
-import Home from "./components/Home";
+import Reflection from "./components/Reflection";
 import Login from "./components/Login";
 import CreateUser from "./components/CreateUser";
+import Remind from "./components/Remind";
 
 function App(props) {
   const { isAuthenticated, isVerifying } = props;
@@ -15,7 +17,14 @@ function App(props) {
       <ProtectedRoute
         exact
         path="/"
-        component={Home}
+        component={Reflection}
+        isAuthenticated={isAuthenticated}
+        isVerifying={isVerifying}
+      />
+      <ProtectedRoute
+        exact
+        path="/remind"
+        component={Remind}
         isAuthenticated={isAuthenticated}
         isVerifying={isVerifying}
       />
