@@ -1,45 +1,48 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { logoutUser } from "../actions";
-import { connect } from "react-redux";
 
 class Navbar extends Component {
-    handleLogout = () => {
-        const { dispatch } = this.props;
-        dispatch(logoutUser());
-        };
     render() {
+        const {currPage} = this.props;
+        var dashClass, schedClass, settClass;
+        if (currPage === "Reflection") {
+            dashClass = "is-active";
+            schedClass = "";
+            settClass = "";
+        } else if (currPage === "Remind") {
+            dashClass = "";
+            schedClass = "is-active";
+            settClass = "";
+        } else if (currPage === "Settings") {
+            dashClass = "";
+            schedClass = "";
+            settClass = "is-active";
+        }
         return (
-        <div>
-            <nav id="navbarBottom" className="navbar is-fixed-bottom has-shadow">
-                <div className = "columns is-centered is-mobile">
-                    <div className = "column is-one-third">
-                        <Link className="navbar-item is-active" to="/">
-                            <b>Reflections</b>
+        <div className="navbar is-fixed-bottom">
+            <div className="tabs is-fullwidth" style={{position: "absolute", bottom: "0px", width: "100%", backgroundColor: "white", paddingTop: "10px"}}>
+                <ul>
+                    <li className={dashClass}>
+                        <Link to="/">
+                            <b>Dashboard</b>
                         </Link>
-                    </div>
-                    <div className = "column is-one-third">
-                        <Link className="navbar-item is-active" to="/remind">
-                            <b>Reminders</b>
+                    </li>
+                    <li className={schedClass}>
+                        <Link  to="/remind">
+                            <b>Schedule</b>
                         </Link>
-                    </div>
-                    <div className = "column is-one-third">
-                        <div className="navbar-item is-active" onClick={this.handleLogout}>
-                            <b>Logout</b>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
+                    </li>
+                    <li className={settClass}>
+                        <Link  to="/settings">
+                            <b>Settings</b>
+                        </Link>
+                    </li>
+                </ul>
+            </div>
+            </div>
         );
     }
 }
 
-function mapStateToProps(state) {
-    return {
-      isLoggingOut: state.auth.isLoggingOut,
-      logoutError: state.auth.logoutError
-    };
-  }
 
-export default connect(mapStateToProps)(Navbar);
+export default Navbar;

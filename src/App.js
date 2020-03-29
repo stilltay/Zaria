@@ -9,6 +9,7 @@ import Reflection from "./components/Reflection";
 import Login from "./components/Login";
 import CreateUser from "./components/CreateUser";
 import Remind from "./components/Remind";
+import Settings from "./components/Settings";
 
 function App(props) {
   const { isAuthenticated, isVerifying } = props;
@@ -25,6 +26,13 @@ function App(props) {
         exact
         path="/remind"
         component={Remind}
+        isAuthenticated={isAuthenticated}
+        isVerifying={isVerifying}
+      />
+      <ProtectedRoute
+        exact
+        path="/settings"
+        component={Settings}
         isAuthenticated={isAuthenticated}
         isVerifying={isVerifying}
       />
