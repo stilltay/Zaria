@@ -25,7 +25,7 @@ class Settings extends Component {
             </React.Fragment>;
 
         return (
-        <div className="has-navbar-fixed-bottom" style={{paddingBottom: 51, backgroundColor: "#EAEAEA"}}>
+        <div className="has-navbar-fixed-bottom" style={{paddingBottom: 51,  paddingTop: 64}}>
             <Header name="Settings"/>
             <Card imgSrc= {require('../images/settings.jpg')} cardContent={content}/>
             <Navbar currPage="Settings"/>

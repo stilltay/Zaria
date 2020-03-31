@@ -9,7 +9,11 @@ import {
     VERIFY_SUCCESS,
     CREATE_USER_ERROR,
     CREATE_USER_SUCCESS,
-    CREATE_USER_REQUEST
+    CREATE_USER_REQUEST,
+    // FETCH_JOURNALS,
+    ADD_JOURNAl_REQUEST,
+    ADD_JOURNAL_ERROR,
+    ADD_JOURNAL_SUCCESS,
   } from "../actions/";
 
   export default (
@@ -22,7 +26,9 @@ import {
       logoutError: false,
       createUserError: false,
       isAuthenticated: false,
-      user: {}
+      user: {},
+      journal: "",
+      error: '',
     },
     action
   ) => {
@@ -97,6 +103,23 @@ import {
             isAuthenticated: false,
             createUserError: true
         }
+      case ADD_JOURNAL_SUCCESS:
+            return {
+                ...state,
+                journal: action.journal
+            }
+       case ADD_JOURNAl_REQUEST:
+            return {
+                ...state,
+            }
+        case ADD_JOURNAL_ERROR:
+            return {
+                ...state,
+                error: action.error
+            }
+
+    //   case FETCH_JOURNALS:
+    //         return action.payload;
       default:
         return state;
     }

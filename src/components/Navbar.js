@@ -19,7 +19,7 @@ class Navbar extends Component {
             settClass = "is-active";
         }
         return (
-        <div className="navbar is-fixed-bottom">
+        <div className="navbar is-fixed-bottom" >
             <div className="tabs is-fullwidth" style={{position: "absolute", bottom: "0px", width: "100%", backgroundColor: "white", paddingTop: "10px"}}>
                 <ul>
                     <li className={dashClass}>

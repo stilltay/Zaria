@@ -1,5 +1,6 @@
 import React from "react";
 import './App.sass';
+import './App.css';
 
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
@@ -10,6 +11,7 @@ import Login from "./components/Login";
 import CreateUser from "./components/CreateUser";
 import Remind from "./components/Remind";
 import Settings from "./components/Settings";
+import EditJournal from "./components/EditJournal";
 
 function App(props) {
   const { isAuthenticated, isVerifying } = props;
@@ -33,6 +35,13 @@ function App(props) {
         exact
         path="/settings"
         component={Settings}
+        isAuthenticated={isAuthenticated}
+        isVerifying={isVerifying}
+      />
+      <ProtectedRoute
+        exact
+        path="/editjournal"
+        component={EditJournal}
         isAuthenticated={isAuthenticated}
         isVerifying={isVerifying}
       />

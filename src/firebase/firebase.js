@@ -1,6 +1,4 @@
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
+import * as firebase from 'firebase';
 
 const firebaseConfig = {
     apiKey: "AIzaSyBeGN6Pm4OAZ-89ca5YtmQIkXul8ZhMwSs",
@@ -14,5 +12,6 @@ const firebaseConfig = {
   };
 
 export const myFirebase = firebase.initializeApp(firebaseConfig);
-const baseDb = myFirebase.firestore();
-export const db = baseDb;
+
+const databaseRef = firebase.database().ref();
+export const journalsRef = databaseRef.child("users");

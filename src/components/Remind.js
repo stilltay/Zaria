@@ -25,10 +25,10 @@ class Remind extends Component {
         <h1 className = "subtitle is-6">Dr. Lindsey</h1>
     </React.Fragment>;
     return (
-      <div className="has-navbar-fixed-bottom" style={{paddingBottom: 51, backgroundColor: "#EAEAEA"}}>
+      <div className="has-navbar-fixed-bottom" style={{paddingBottom: 51, paddingTop: 64}}>
           <Header name="Schedule"/>
-          <Card title="Upcoming Appointments" cardContent={appCont} />
-          <Card title="Daily Reminders" cardContent={dailyCont} />
+          <Card title="Upcoming Appointments" cardContent={appCont} hasPlus />
+          <Card title="Daily Reminders" cardContent={dailyCont} hasPlus />
           <Navbar currPage="Remind"/>
       </div>
     );

@@ -19,16 +19,16 @@ const styles = () => ({
     }
   },
   paper: {
-    marginTop: 100,
+    paddingTop: 100,
     display: "flex",
     padding: 20,
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    boxShadow: "none"
   },
   avatar: {
     marginLeft: "auto",
-    marginRight: "auto",
-    backgroundColor: "#f50057"
+    marginRight: "auto"
   },
   form: {
     marginTop: 1
@@ -64,11 +64,11 @@ class CreateUser extends Component {
       return <Redirect to="/" />;
     } else {
       return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs" style={{height: "100vh"}}>
           <Paper className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
+          <div className={classes.avatar}>
+              <img alt="" src={require("../images/Zaria.png")} style={{width: 150}} />
+            </div>
             <Typography component="h1" variant="h5">
               Create Account
             </Typography>
@@ -100,7 +100,7 @@ class CreateUser extends Component {
               type="button"
               fullWidth
               variant="contained"
-              color="primary"
+              style={{backgroundColor: "#7F4E83", color: "white"}}
               className={classes.submit}
               onClick={this.handleSubmit}
             >

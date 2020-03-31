@@ -1,4 +1,5 @@
 import { myFirebase } from "../firebase/firebase";
+import { journalsRef } from "../firebase/firebase";
 
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -14,6 +15,12 @@ export const VERIFY_SUCCESS = "VERIFY_SUCCESS";
 export const CREATE_USER_REQUEST = "CREATE_USER_REQUEST";
 export const CREATE_USER_ERROR = "CREATE_USER_ERROR";
 export const CREATE_USER_SUCCESS = "CREATE_USER_SUCCESS";
+
+export const ADD_JOURNAl_REQUEST = "ADD_JOURNAL_REQUEST";
+export const ADD_JOURNAL_ERROR = "ADD_JOURNAL_ERROR";
+export const ADD_JOURNAL_SUCCESS = "ADD_JOURNAL_SUCCESS";
+
+// export const FETCH_JOURNALS = "FETCH_JOURNALS";
 
 
 
@@ -84,6 +91,51 @@ const createUserError = () => {
         type: CREATE_USER_ERROR
     };
 };
+
+const requestAddJournal = () => {
+    return {
+        type: ADD_JOURNAl_REQUEST
+    };
+};
+
+const addJournalSucceess = (resp) => {
+    return {
+        type: ADD_JOURNAL_SUCCESS,
+        journal: resp
+    };
+};
+
+const addJournalError = (error) =>{
+    return {
+        type: ADD_JOURNAL_ERROR,
+        error: error
+    };
+};
+
+export const addJournal = (newJournal) => dispatch => {
+      console.log("i entered add Journal");
+      dispatch(requestAddJournal());
+      journalsRef
+        .push()
+        .set(newJournal)
+        .then(newJournal => {
+            dispatch(addJournalSucceess(newJournal))
+        })
+        .catch(error => {
+            dispatch(addJournalError("Adding journal failed..."))
+        });
+  };
+//   export const deleteJournal = deleteJournal => async dispatch => {
+//     journalsRef.child(deleteJournal).remove();
+//   };
+//   export const fetchJournals = () => async dispatch => {
+//     journalsRef.on("value", snapshot => {
+//       dispatch({
+//         type: FETCH_JOURNALS,
+//         payload: snapshot.val()
+//       });
+//     });
+//   };
 
 export const loginUser = (email, password) => dispatch => {
     dispatch(requestLogin());

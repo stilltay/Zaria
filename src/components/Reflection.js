@@ -16,7 +16,7 @@ class Reflection extends Component {
         <span role="img"  className="card-footer-item">😐</span>
         <span role="img"  className="card-footer-item">🙁</span>
         <span role="img"  className="card-footer-item">😮</span>
-    </React.Fragment>;
+    </React.Fragment>;;
 
     var journalCont =
     <React.Fragment>
@@ -28,10 +28,10 @@ class Reflection extends Component {
     </React.Fragment>;
 
     return (
-      <div className="has-navbar-fixed-bottom" style={{paddingBottom: 51, backgroundColor: "#EAEAEA"}}>
+      <div style={{paddingBottom: 51, paddingTop: 64}}>
           <Header name="Dashboard"/>
           <Card title="Your Happiness Report" imgSrc={require('../images/dash.png')} cardContent={cardCont} footerContent={footerCont}/>
-          <Card title="Journal Entries" cardContent={journalCont} />
+          <Card title="Journal Entries" cardContent={journalCont} hasPlus = {true} />
           <Navbar currPage="Reflection" />
       </div>
     );
